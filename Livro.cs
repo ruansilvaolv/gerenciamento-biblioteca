@@ -2,14 +2,13 @@ namespace GerenciamentoBiblioteca
 {
     public class Livro
     {
-        public Livro(string title, string author, string isbn, DateTime anoPublicacao, bool isAvailable)
+        public Livro(string title, string author, string isbn, DateTime anoPublicacao, bool isAvailable = true)
         {
             Id = Guid.NewGuid();
             Title = title;
             Author = author;
             Isbn = isbn;
             AnoPublicacao = anoPublicacao;
-            IsAvailable = isAvailable;
         }
 
         public Guid Id { get; set; }
