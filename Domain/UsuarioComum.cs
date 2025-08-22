@@ -22,7 +22,7 @@ namespace GerenciamentoBiblioteca.Domain
 
         public override int LoanPrize => UserType switch
         {
-            EUserType.Common => 7,
+            EUserType.Common => 14,
             _ => throw new InvalidOperationException()
         };
     }
