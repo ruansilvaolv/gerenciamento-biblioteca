@@ -48,30 +48,11 @@ namespace GerenciamentoBiblioteca
         }
 
 
-        // Switch Expressions
-        public int MaxBooksLimit => UserType switch
-        {
-            EUserType.Commmon => 3,
-            EUserType.Student => 5,
-            EUserType.Teacher => 10,
-            _ => 0
-        };
+        public abstract int MaxBooksLimit { get; }
 
-        public decimal FineByDay => UserType switch
-        {
-            EUserType.Commmon => 2.00m,
-            EUserType.Student => 1.00m,
-            EUserType.Teacher => 0m, // Don't pay fine
-            _ => 0m
-        };
+        public abstract decimal FineByDay { get; }
 
-        public int LoanPrize => UserType switch
-        {
-            EUserType.Commmon => 14,
-            EUserType.Student => 21,
-            EUserType.Teacher => 30,
-            _ => 0
-        };
+        public abstract int LoanPrize { get; }
 
 
         // Methods
@@ -81,5 +62,8 @@ namespace GerenciamentoBiblioteca
 
             return validateRegex.IsMatch(email);
         }
+
+        public decimal CalcLoanTotal(int daysLate)
+            => FineByDay * daysLate;
     }
 }
