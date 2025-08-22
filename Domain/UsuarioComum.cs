@@ -20,7 +20,7 @@ namespace GerenciamentoBiblioteca.Domain
             _ => throw new InvalidOperationException()
         };
 
-        public override int LoanPrize => UserType switch
+        public override int LoanPeriodDays => UserType switch
         {
             EUserType.Common => 14,
             _ => throw new InvalidOperationException()

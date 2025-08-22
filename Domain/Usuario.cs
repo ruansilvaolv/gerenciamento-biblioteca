@@ -52,7 +52,7 @@ namespace GerenciamentoBiblioteca
 
         public abstract decimal FineByDay { get; }
 
-        public abstract int LoanPrize { get; }
+        public abstract int LoanPeriodDays { get; }
 
 
         // Methods
