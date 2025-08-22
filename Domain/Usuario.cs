@@ -1,9 +1,10 @@
 using System.Text.RegularExpressions;
-using GerenciamentoBiblioteca.Enums;
+using GerenciamentoBiblioteca.Domain.Enums;
+using GerenciamentoBiblioteca.Domain.Exceptions;
 
 namespace GerenciamentoBiblioteca
 {
-    public class Usuario
+    public abstract class Usuario
     {
         public Usuario(string name, string email, string phone, DateTime registerDate, EUserType userType)
         {
@@ -80,17 +81,5 @@ namespace GerenciamentoBiblioteca
 
             return validateRegex.IsMatch(email);
         }
-    }
-
-
-    // Exceptions
-    public class InvalidEmailException : Exception
-    {
-        public InvalidEmailException(DateTime time)
-        {
-            OccurencyDate = time;
-        }
-
-        public DateTime OccurencyDate { get; set; }
     }
 }

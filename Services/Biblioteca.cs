@@ -1,4 +1,4 @@
-namespace GerenciamentoBiblioteca
+namespace GerenciamentoBiblioteca.Services
 {
     public class Biblioteca
     {

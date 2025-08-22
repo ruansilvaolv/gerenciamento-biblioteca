@@ -1,4 +1,4 @@
-using GerenciamentoBiblioteca.Enums;
+using GerenciamentoBiblioteca.Domain.Enums;
 
 namespace GerenciamentoBiblioteca
 {
