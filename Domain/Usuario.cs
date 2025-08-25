@@ -32,9 +32,9 @@ namespace GerenciamentoBiblioteca
             {
                 try
                 {
-                  if (CheckEmail(email))
+                  if (CheckEmail(value))
                   {
-                      value = email;
+                      email = value;
                   }
                 }
                 catch(InvalidEmailException ex)

@@ -1,3 +1,6 @@
+using GerenciamentoBiblioteca.Domain;
+using GerenciamentoBiblioteca.Domain.Exceptions;
+
 namespace GerenciamentoBiblioteca.Services
 {
     public class Biblioteca
@@ -33,7 +36,39 @@ namespace GerenciamentoBiblioteca.Services
         }
 
         public void CadastrarUsuario()
-        {}
+        {
+            Console.Write("Digite o nome completo: ");
+            var name = Console.ReadLine();
+
+            Console.Write("Digite o e-mail: ");
+            var email = Console.ReadLine();
+
+            Console.Write("Digite o telefone completo: ");
+            var phone = Console.ReadLine();
+
+            Console.Write("Digite uma das opções abaixo:\n1 - Usuário Comum\n2 - Estudante\n3 - Professor\n");
+            var opt = int.Parse(Console.ReadLine());
+
+            switch (opt)
+            {
+                case 1:
+                    var commonUser = new UsuarioComum(name, email, phone, DateTime.Now);
+                    Usuarios.Add(commonUser);
+                    break;
+                case 2:
+                    var studentUser = new Estudante(name, email, phone, DateTime.Now);
+                    Usuarios.Add(studentUser);
+                    break;
+                case 3:
+                    var teacherUser = new Professor(name, email, phone, DateTime.Now);
+                    Usuarios.Add(teacherUser);
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida!");
+                    throw new InvalidRegisterOptionException(DateTime.Now);
+                    break;
+            }
+        }
 
         public void RealizarEmprestimo()
         {}
