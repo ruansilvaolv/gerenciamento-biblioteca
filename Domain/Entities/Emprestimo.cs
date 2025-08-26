@@ -1,6 +1,6 @@
 using GerenciamentoBiblioteca.Domain.Enums;
 
-namespace GerenciamentoBiblioteca
+namespace GerenciamentoBiblioteca.Domain.Entities
 {
     public class Emprestimo
     {

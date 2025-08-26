@@ -1,28 +1,27 @@
 using GerenciamentoBiblioteca.Domain.Enums;
 
-namespace GerenciamentoBiblioteca.Domain
+namespace GerenciamentoBiblioteca.Domain.Entities
 {
-    public class UsuarioComum : Usuario
+    public class Estudante : Usuario
     {
-        public UsuarioComum(string name, string email, string phone, DateTime registerDate)
-          : base(name, email, phone, registerDate, EUserType.Common) {}
-
+        public Estudante(string name, string email, string phone, DateTime registerDate)
+            : base(name, email, phone, registerDate, EUserType.Student) {}
 
         public override int MaxBooksLimit => UserType switch
         {
-            EUserType.Common => 3,
+            EUserType.Student => 5,
             _ => throw new InvalidOperationException()
         };
 
         public override decimal FineByDay => UserType switch
         {
-            EUserType.Common => 2.00m,
+            EUserType.Student => 1.00m,
             _ => throw new InvalidOperationException()
         };
 
         public override int LoanPeriodDays => UserType switch
         {
-            EUserType.Common => 14,
+            EUserType.Student => 21,
             _ => throw new InvalidOperationException()
         };
     }

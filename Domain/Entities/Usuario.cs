@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 using GerenciamentoBiblioteca.Domain.Enums;
 using GerenciamentoBiblioteca.Domain.Exceptions;
 
-namespace GerenciamentoBiblioteca
+namespace GerenciamentoBiblioteca.Domain.Entities
 {
     public abstract class Usuario
     {
