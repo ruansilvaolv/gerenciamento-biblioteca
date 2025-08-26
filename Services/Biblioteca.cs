@@ -21,21 +21,52 @@ namespace GerenciamentoBiblioteca.Services
 
         public void CadastrarLivro()
         {
+            var dadosLivro = ReceberDadosLivro();
+            ValidarDadosLivro(dadosLivro);
+        }
+
+        public (string bookName, string author, string isbn, int publicationYear) ReceberDadosLivro()
+        {
             Console.Write("Digite o nome do livro: ");
-            string BookName = Console.ReadLine();
+            string bookName = Console.ReadLine() ?? "";
 
-            Console.Write("Digite  o nome do Autor: ");
-            string Author = Console.ReadLine();
+            Console.Write("Digite o nome do autor: ");
+            string author = Console.ReadLine() ?? "";
 
-            Console.Write("Digite  o ISBN: ");
-            string Isbn = Console.ReadLine();
+            Console.Write("Digite o ISBN: ");
+            string isbn = Console.ReadLine() ?? "";
 
             Console.Write("Digite o ano de publicação: ");
-            DateTime AnoPublicacao = DateTime.Parse(Console.ReadLine());
+            string input = Console.ReadLine() ?? "";
 
-            Livro book = new Livro(BookName, Author, Isbn, AnoPublicacao);
+            if (int.TryParse(input, out int publicationYear))
+            {
+                if (publicationYear > DateTime.Now.Year)
+                {
+                    throw new ArgumentException("Ano deve ser igual ou abaixo do ano atual!");
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Ano inválido!");
+            }
 
-            Livros.Add(book);
+            return (bookName, author, isbn, publicationYear);
+        }
+
+        public void ValidarDadosLivro((string bookName, string author, string isbn, int publicationYear) dados)
+        {
+            if (string.IsNullOrWhiteSpace(dados.bookName))
+                throw new ArgumentNullException("O título do livro é obrigatório!");
+
+            if (string.IsNullOrWhiteSpace(dados.author))
+                throw new ArgumentNullException("O nome do autor é obrigatório!");
+
+            if (string.IsNullOrWhiteSpace(dados.isbn))
+                throw new ArgumentNullException("ISBN é obrigatório!");
+
+            if (int.IsNegative(dados.publicationYear))
+                throw new ArgumentException("O ano de publicação não pode ser negativo!");
         }
 
         public void CadastrarUsuario()
