@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
-using GerenciamentoBiblioteca.Domain.Enums;
-using GerenciamentoBiblioteca.Domain.Exceptions;
+using LibraryManagement.Domain.Enums;
+using LibraryManagement.Domain.Exceptions;
 
-namespace GerenciamentoBiblioteca.Domain.Entities
+namespace LibraryManagement.Domain.Entities
 {
     public abstract class User
     {

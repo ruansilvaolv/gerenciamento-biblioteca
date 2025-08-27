@@ -1,5 +1,5 @@
-using GerenciamentoBiblioteca.Domain.Entities;
-using GerenciamentoBiblioteca.Domain.Factories;
+using LibraryManagement.Domain.Entities;
+using LibraryManagement.Domain.Factories;
 
 namespace GerenciamentoBiblioteca.Services
 {

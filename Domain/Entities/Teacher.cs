@@ -1,6 +1,6 @@
-using GerenciamentoBiblioteca.Domain.Enums;
+using LibraryManagement.Domain.Enums;
 
-namespace GerenciamentoBiblioteca.Domain.Entities
+namespace LibraryManagement.Domain.Entities
 {
     public class Teacher : User
     {

@@ -1,6 +1,6 @@
-using GerenciamentoBiblioteca.Domain.Entities;
+using LibraryManagement.Domain.Entities;
 
-namespace GerenciamentoBiblioteca.Domain.Factories
+namespace LibraryManagement.Domain.Factories
 {
     public class BookFactory
     {

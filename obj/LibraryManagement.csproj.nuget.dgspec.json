@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/ruansilvaolv/dev/csharp/Projetos/GerenciamentoBiblioteca/GerenciamentoBiblioteca.csproj": {}
+    "/home/ruansilvaolv/dev/csharp/Projetos/LibraryManagement/LibraryManagement.csproj": {}
   },
   "projects": {
-    "/home/ruansilvaolv/dev/csharp/Projetos/GerenciamentoBiblioteca/GerenciamentoBiblioteca.csproj": {
+    "/home/ruansilvaolv/dev/csharp/Projetos/LibraryManagement/LibraryManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ruansilvaolv/dev/csharp/Projetos/GerenciamentoBiblioteca/GerenciamentoBiblioteca.csproj",
-        "projectName": "GerenciamentoBiblioteca",
-        "projectPath": "/home/ruansilvaolv/dev/csharp/Projetos/GerenciamentoBiblioteca/GerenciamentoBiblioteca.csproj",
+        "projectUniqueName": "/home/ruansilvaolv/dev/csharp/Projetos/LibraryManagement/LibraryManagement.csproj",
+        "projectName": "LibraryManagement",
+        "projectPath": "/home/ruansilvaolv/dev/csharp/Projetos/LibraryManagement/LibraryManagement.csproj",
         "packagesPath": "/home/ruansilvaolv/.nuget/packages/",
-        "outputPath": "/home/ruansilvaolv/dev/csharp/Projetos/GerenciamentoBiblioteca/obj/",
+        "outputPath": "/home/ruansilvaolv/dev/csharp/Projetos/LibraryManagement/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ruansilvaolv/.nuget/NuGet/NuGet.Config"

@@ -1,4 +1,4 @@
-namespace GerenciamentoBiblioteca;
+namespace LibraryManagement;
 
 class Program
 {

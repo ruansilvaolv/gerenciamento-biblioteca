@@ -1,7 +1,7 @@
-using GerenciamentoBiblioteca.Domain.Entities;
-using GerenciamentoBiblioteca.Domain.Enums;
+using LibraryManagement.Domain.Entities;
+using LibraryManagement.Domain.Enums;
 
-namespace GerenciamentoBiblioteca.Domain.Factories
+namespace LibraryManagement.Domain.Factories
 {
     public class UserFactory
     {

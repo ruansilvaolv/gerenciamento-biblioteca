@@ -1,4 +1,4 @@
-namespace GerenciamentoBiblioteca.Domain.Exceptions
+namespace LibraryManagement.Domain.Exceptions
 {
     public class InvalidRegisterOptionException : Exception
     {

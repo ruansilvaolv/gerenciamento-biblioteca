@@ -1,4 +1,4 @@
-namespace GerenciamentoBiblioteca.Domain.Enums
+namespace LibraryManagement.Domain.Enums
 {
     public enum EUserType
     {
