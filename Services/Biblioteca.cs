@@ -1,8 +1,5 @@
 using GerenciamentoBiblioteca.Domain.Entities;
-using GerenciamentoBiblioteca.Domain.Exceptions;
-using GerenciamentoBiblioteca.Domain.Entities;
 using GerenciamentoBiblioteca.Domain.Factories;
-using GerenciamentoBiblioteca.Domain.Enums;
 
 namespace GerenciamentoBiblioteca.Services
 {
@@ -10,86 +7,99 @@ namespace GerenciamentoBiblioteca.Services
     {
         public Biblioteca()
         {
-            Livros = new List<Livro>();
-            Usuarios = new List<Usuario>();
-            Emprestimos = new List<Emprestimo>();
+            Books = new List<Book>();
+            Users = new List<User>();
+            Loans = new List<Loan>();
         }
 
-        public List<Livro> Livros { get; set; }
-        public List<Usuario> Usuarios { get; set; }
-        public List<Emprestimo> Emprestimos { get; set; }
+        #region Properties
+          public List<Book> Books { get; set; }
+          public List<User> Users { get; set; }
+          public List<Loan> Loans { get; set; }
+        #endregion
 
-        public void CadastrarLivro()
-        {
-            var dadosLivro = ReceberDadosLivro();
-            ValidarDadosLivro(dadosLivro);
-        }
 
-        public (string bookName, string author, string isbn, int publicationYear) ReceberDadosLivro()
-        {
-            Console.Write("Digite o nome do livro: ");
-            string bookName = Console.ReadLine() ?? "";
+        #region Register Books Methods
+          public (string bookName, string author, string isbn, int publicationYear) ReceiveBookData()
+          {
+              Console.Write("Digite o nome do livro: ");
+              string bookName = Console.ReadLine() ?? "";
 
-            Console.Write("Digite o nome do autor: ");
-            string author = Console.ReadLine() ?? "";
+              Console.Write("Digite o nome do autor: ");
+              string author = Console.ReadLine() ?? "";
 
-            Console.Write("Digite o ISBN: ");
-            string isbn = Console.ReadLine() ?? "";
+              Console.Write("Digite o ISBN: ");
+              string isbn = Console.ReadLine() ?? "";
 
-            Console.Write("Digite o ano de publicação: ");
-            string input = Console.ReadLine() ?? "";
+              Console.Write("Digite o ano de publicação: ");
+              string input = Console.ReadLine() ?? "";
 
-            if (int.TryParse(input, out int publicationYear))
-            {
-                if (publicationYear > DateTime.Now.Year)
-                {
-                    throw new ArgumentException("Ano deve ser igual ou abaixo do ano atual!");
-                }
-            }
-            else
-            {
-                throw new ArgumentException("Ano inválido!");
-            }
+              if (int.TryParse(input, out int publicationYear))
+              {
+                  if (publicationYear > DateTime.Now.Year)
+                  {
+                      throw new ArgumentException("Ano deve ser igual ou abaixo do ano atual!");
+                  }
+              }
+              else
+              {
+                  throw new ArgumentException("Ano inválido!");
+              }
 
-            return (bookName, author, isbn, publicationYear);
-        }
+              return (bookName, author, isbn, publicationYear);
+          }
 
-        public void ValidarDadosLivro((string bookName, string author, string isbn, int publicationYear) dados)
-        {
-            if (string.IsNullOrWhiteSpace(dados.bookName))
-                throw new ArgumentNullException("O título do livro é obrigatório!");
+          public void ValidateBookData((string bookName, string author, string isbn, int publicationYear) data)
+          {
+              if (string.IsNullOrWhiteSpace(data.bookName))
+                  throw new ArgumentNullException("O título do livro é obrigatório!");
 
-            if (string.IsNullOrWhiteSpace(dados.author))
-                throw new ArgumentNullException("O nome do autor é obrigatório!");
+              if (string.IsNullOrWhiteSpace(data.author))
+                  throw new ArgumentNullException("O nome do autor é obrigatório!");
 
-            if (string.IsNullOrWhiteSpace(dados.isbn))
-                throw new ArgumentNullException("ISBN é obrigatório!");
+              if (string.IsNullOrWhiteSpace(data.isbn))
+                  throw new ArgumentNullException("ISBN é obrigatório!");
 
-            if (int.IsNegative(dados.publicationYear))
-                throw new ArgumentException("O ano de publicação não pode ser negativo!");
-        }
+              if (int.IsNegative(data.publicationYear))
+                  throw new ArgumentException("O ano de publicação não pode ser negativo!");
+          }
 
-        public void CadastrarUsuario()
-        {
-            Console.Write("Digite o nome completo: ");
-            var name = Console.ReadLine();
+          public void RegisterBook()
+          {
+              var bookData = ReceiveBookData();
+              ValidateBookData(bookData);
+              var (bookName, author, isbn, publicationYear) = bookData;
+              var book = BookFactory.CreateBook(bookName, author, isbn, publicationYear);
 
-            Console.Write("Digite o e-mail: ");
-            var email = Console.ReadLine();
+              Books.Add(book);
+          }
+        #endregion)
 
-            Console.Write("Digite o telefone completo: ");
-            var phone = Console.ReadLine();
 
-            Console.Write("Digite uma das opções abaixo:\n1 - Usuário Comum\n2 - Estudante\n3 - Professor\n");
-            var opt = int.Parse(Console.ReadLine());
+        #region Register Users Methods
+          public void RegisterUser()
+          {
+              Console.Write("Digite o nome completo: ");
+              var name = Console.ReadLine();
 
-            var novoUsuario = UsuarioFactory.CriarUsuario(opt, name, email, phone);
-        }
+              Console.Write("Digite o e-mail: ");
+              var email = Console.ReadLine();
 
-        public void RealizarEmprestimo()
+              Console.Write("Digite o telefone completo: ");
+              var phone = Console.ReadLine();
+
+              Console.Write("Digite uma das opções abaixo:\n1 - Usuário Comum\n2 - Estudante\n3 - Professor\n");
+              var opt = int.Parse(Console.ReadLine());
+
+              var newUser = UserFactory.CreateUser(opt, name, email, phone);
+          }
+        #endregion
+
+
+        public void MakeLoan()
         {}
 
-        public void ProcessarDevolucao()
+        public void ProcessReturn()
         {}
     }
 }
