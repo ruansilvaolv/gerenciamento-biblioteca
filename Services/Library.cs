@@ -3,9 +3,9 @@ using GerenciamentoBiblioteca.Domain.Factories;
 
 namespace GerenciamentoBiblioteca.Services
 {
-    public class Biblioteca
+    public class Library
     {
-        public Biblioteca()
+        public Library()
         {
             Books = new List<Book>();
             Users = new List<User>();
