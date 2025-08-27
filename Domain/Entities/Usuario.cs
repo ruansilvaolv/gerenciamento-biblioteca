@@ -4,9 +4,9 @@ using GerenciamentoBiblioteca.Domain.Exceptions;
 
 namespace GerenciamentoBiblioteca.Domain.Entities
 {
-    public abstract class Usuario
+    public abstract class User
     {
-        public Usuario(string name, string email, string phone, DateTime registerDate, EUserType userType)
+        public User(string name, string email, string phone, DateTime registerDate, EUserType userType)
         {
             Id = Guid.NewGuid();
             Name = name;

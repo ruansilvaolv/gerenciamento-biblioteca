@@ -2,21 +2,21 @@ using GerenciamentoBiblioteca.Domain.Enums;
 
 namespace GerenciamentoBiblioteca.Domain.Entities
 {
-    public class Emprestimo
+    public class Loan
     {
-        public Emprestimo(Usuario usuario, Livro livro, DateTime loanDate, DateTime devolutionDate, EUserType userType)
+        public Loan(User user, Book book, DateTime loanDate, DateTime devolutionDate, EUserType userType)
         {
             Id = Guid.NewGuid();
-            Usuario = usuario;
-            Livro = livro;
+            User = user;
+            Book = book;
             LoanDate = loanDate;
             DevolutionDate = devolutionDate;
             UserType = userType;
         }
 
         public Guid Id { get; set; }
-        public Usuario Usuario { get; set; }
-        public Livro Livro { get; set; }
+        public User User { get; set; }
+        public Book Book { get; set; }
         public DateTime LoanDate { get; set; }
         public DateTime DevolutionDate { get; set; }
         public EUserType UserType { get; }
@@ -25,7 +25,7 @@ namespace GerenciamentoBiblioteca.Domain.Entities
           =>  DevolutionDate.Day - LoanDate.Day;
 
         public decimal CalcFine()
-          => Usuario.FineByDay * CalcDaysLate();
+          => User.FineByDay * CalcDaysLate();
 
         public void FinalizeLoan()
         {}

@@ -1,27 +1,27 @@
 namespace GerenciamentoBiblioteca.Domain.Entities
 {
-    public class Livro
+    public class Book
     {
-        public Livro(string title, string author, string isbn, DateTime anoPublicacao, bool isAvailable = true)
+        public Book(string title, string author, string isbn, int publicationYear, bool isAvailable = true)
         {
             Id = Guid.NewGuid();
             Title = title;
             Author = author;
             Isbn = isbn;
-            AnoPublicacao = anoPublicacao;
+            PublicationYear = publicationYear;
         }
 
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public string Isbn { get; set; }
-        public DateTime AnoPublicacao { get; set; }
+        public int PublicationYear { get; set; }
         public bool IsAvailable { get; set; }
 
-        public void MarcarEmprestado()
+        public void MarkBorrowed()
         {}
 
-        public void MarcarDisponivel()
+        public void MarkAvailable()
         {}
     }
 }

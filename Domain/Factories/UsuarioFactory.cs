@@ -3,9 +3,9 @@ using GerenciamentoBiblioteca.Domain.Enums;
 
 namespace GerenciamentoBiblioteca.Domain.Factories
 {
-    public class UsuarioFactory
+    public class UserFactory
     {
-        public static Usuario CriarUsuario(int optType, string name, string email, string phone)
+        public static User CreateUser(int optType, string name, string email, string phone)
         {
             if(!Enum.IsDefined(typeof(EUserType), optType))
             {
@@ -16,9 +16,9 @@ namespace GerenciamentoBiblioteca.Domain.Factories
 
             return userType switch
             {
-                EUserType.Common => new UsuarioComum(name, email, phone, DateTime.Now),
-                EUserType.Student => new Estudante(name, email, phone, DateTime.Now),
-                EUserType.Teacher => new Professor(name, email, phone, DateTime.Now),
+                EUserType.Common => new CommonUser(name, email, phone, DateTime.Now),
+                EUserType.Student => new Student(name, email, phone, DateTime.Now),
+                EUserType.Teacher => new Teacher(name, email, phone, DateTime.Now),
                 _ => throw new ArgumentException("Tipo de usuário não implementado!")
             };
         }

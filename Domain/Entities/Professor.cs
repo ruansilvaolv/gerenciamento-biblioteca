@@ -2,9 +2,9 @@ using GerenciamentoBiblioteca.Domain.Enums;
 
 namespace GerenciamentoBiblioteca.Domain.Entities
 {
-    public class Professor : Usuario
+    public class Teacher : User
     {
-        public Professor(string name, string email, string phone, DateTime registerDate)
+        public Teacher(string name, string email, string phone, DateTime registerDate)
             : base(name, email, phone, registerDate, EUserType.Teacher) {}
 
         public override int MaxBooksLimit => UserType switch

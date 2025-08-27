@@ -2,9 +2,9 @@ using GerenciamentoBiblioteca.Domain.Enums;
 
 namespace GerenciamentoBiblioteca.Domain.Entities
 {
-    public class UsuarioComum : Usuario
+    public class CommonUser : User
     {
-        public UsuarioComum(string name, string email, string phone, DateTime registerDate)
+        public CommonUser(string name, string email, string phone, DateTime registerDate)
           : base(name, email, phone, registerDate, EUserType.Common) {}
 
 
