@@ -77,21 +77,48 @@ namespace GerenciamentoBiblioteca.Services
 
 
         #region Register Users Methods
-          public void RegisterUser()
+          public (string userName, string userEmail, string userPhone, int userOpt) ReceiveUserData()
           {
               Console.Write("Digite o nome completo: ");
-              var name = Console.ReadLine();
+              string userName = Console.ReadLine() ?? "";
 
               Console.Write("Digite o e-mail: ");
-              var email = Console.ReadLine();
+              string userEmail = Console.ReadLine() ?? "";
 
-              Console.Write("Digite o telefone completo: ");
-              var phone = Console.ReadLine();
+              Console.Write("Digite o telefone: ");
+              string userPhone = Console.ReadLine() ?? "";
 
-              Console.Write("Digite uma das opções abaixo:\n1 - Usuário Comum\n2 - Estudante\n3 - Professor\n");
-              var opt = int.Parse(Console.ReadLine());
+              Console.Write("Digite opção desejada: ");
+              string opt = Console.ReadLine() ?? "";
 
-              var newUser = UserFactory.CreateUser(opt, name, email, phone);
+              int.TryParse(opt, out int userOpt);
+
+              return (userName, userEmail, userPhone, userOpt);
+          }
+
+          public void ValidateUserData((string userName, string userEmail, string userPhone, int userOpt) data)
+          {
+              if (string.IsNullOrWhiteSpace(data.userName))
+                throw new ArgumentNullException("O nome é obrigatório!");
+
+              if (string.IsNullOrWhiteSpace(data.userEmail))
+                throw new ArgumentNullException("O e-mail é obrigatório!");
+
+              if (string.IsNullOrWhiteSpace(data.userPhone))
+                throw new ArgumentNullException("O telefone é obrigatório!");
+
+              if (data.userOpt < 1 || data.userOpt > 3)
+                throw new ArgumentException("Opção inválida!");
+          }
+
+          public void RegisterUser()
+          {
+              var userData = ReceiveUserData();
+              ValidateUserData(userData);
+              var (userName, userEmail, userPhone, userOpt) = userData;
+              var user = UserFactory.CreateUser(userOpt, userName, userEmail, userPhone);
+
+              Users.Add(user);
           }
         #endregion
 
