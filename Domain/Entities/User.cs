@@ -10,42 +10,21 @@ namespace LibraryManagement.Domain.Entities
         {
             Id = Guid.NewGuid();
             Name = name;
+            if (!CheckEmail(email))
+                throw new InvalidEmailException("O e-mail informado é inválido!");
             Email = email;
             Phone = phone;
             RegisterDate = registerDate;
             UserType = userType;
         }
 
-
         // Props
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string Email { get; set; }
         public string Phone { get; set; }
         public DateTime RegisterDate { get; set; }
         public EUserType UserType { get; set; }
-
-        private string email;
-        public string Email
-        {
-            get { return email; }
-            set
-            {
-                try
-                {
-                  if (CheckEmail(value))
-                  {
-                      email = value;
-                  }
-                }
-                catch(InvalidEmailException ex)
-                {
-                    Console.WriteLine(ex.InnerException);
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine(ex.OccurencyDate);
-                    Console.WriteLine("O e-mail informado é inválido!");
-                }
-            }
-        }
 
 
         public abstract int MaxBooksLimit { get; }
