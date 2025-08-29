@@ -2,11 +2,11 @@ namespace LibraryManagement.Domain.Exceptions
 {
     public class InvalidEmailException : Exception
     {
-        public InvalidEmailException(DateTime time)
+        public InvalidEmailException(string message)
         {
-            OccurencyDate = time;
+            OccurencyMessage = message;
         }
 
-        public DateTime OccurencyDate { get; set; }
+        public string OccurencyMessage { get; set; }
     }
 }
