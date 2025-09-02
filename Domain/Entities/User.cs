@@ -19,11 +19,11 @@ namespace LibraryManagement.Domain.Entities
         }
 
         // Props
-        public Guid Id { get; set; }
+        public Guid Id { get; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public DateTime RegisterDate { get; set; }
+        public DateTime RegisterDate { get; }
         public EUserType UserType { get; set; }
 
 
