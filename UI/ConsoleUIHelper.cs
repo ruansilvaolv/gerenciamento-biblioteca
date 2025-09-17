@@ -1,14 +1,14 @@
 namespace LibraryManagement.UI
 {
-    public class ConsoleUIHelper : UIHelper
+    public class ConsoleUIHelper : IUIHelper
     {
-        public override string ReadString(string prompt)
+        public string ReadString(string prompt)
         {
             Console.Write(prompt);
             return Console.ReadLine()!;
         }
 
-        public override int ReadInt(int prompt)
+        public int ReadInt(int prompt)
         {
             Console.Write(prompt);
             return int.Parse(Console.ReadLine()!);
