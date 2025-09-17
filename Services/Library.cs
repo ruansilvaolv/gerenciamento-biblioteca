@@ -12,29 +12,32 @@ namespace LibraryManagement.Services
             Loans = new List<Loan>();
         }
 
+        public Library(IUIHelper ui)
+        {
+            _ui = ui;
+        }
+
         #region Properties
           public List<Book> Books { get; set; }
           public List<User> Users { get; set; }
           public List<Loan> Loans { get; set; }
+
+          private IUIHelper _ui;
         #endregion
 
 
         #region Register Books Methods
           public (string bookName, string author, string isbn, int publicationYear) ReceiveBookData()
           {
-              Console.Write("Digite o nome do livro: ");
-              string bookName = Console.ReadLine() ?? "";
+              string bookName = _ui.ReadString("Título: ");
 
-              Console.Write("Digite o nome do autor: ");
-              string author = Console.ReadLine() ?? "";
+              string author = _ui.ReadString("Nome do autor: ");
 
-              Console.Write("Digite o ISBN: ");
-              string isbn = Console.ReadLine() ?? "";
+              string isbn = _ui.ReadString("Digite o ISBN: ");
 
-              Console.Write("Digite o ano de publicação: ");
-              string input = Console.ReadLine() ?? "";
+              string yearInput = _ui.ReadString("Digite o ano de publicação: ");
 
-              if (int.TryParse(input, out int publicationYear))
+              if (int.TryParse(yearInput, out int publicationYear))
               {
                   if (publicationYear > DateTime.Now.Year)
                   {
