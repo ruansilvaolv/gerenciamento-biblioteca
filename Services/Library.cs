@@ -1,26 +1,24 @@
 using LibraryManagement.Domain.Entities;
 using LibraryManagement.Domain.Factories;
+using LibraryManagement.UI;
 
 namespace LibraryManagement.Services
 {
     public class Library
     {
-        public Library()
+        public Library(IUIHelper ui)
         {
             Books = new List<Book>();
             Users = new List<User>();
             Loans = new List<Loan>();
-        }
 
-        public Library(IUIHelper ui)
-        {
             _ui = ui;
         }
 
         #region Properties
-          public List<Book> Books { get; set; }
-          public List<User> Users { get; set; }
-          public List<Loan> Loans { get; set; }
+          public List<Book> Books { get; }
+          public List<User> Users { get; }
+          public List<Loan> Loans { get; }
 
           private IUIHelper _ui;
         #endregion
