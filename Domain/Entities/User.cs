@@ -10,8 +10,6 @@ namespace LibraryManagement.Domain.Entities
         {
             Id = Guid.NewGuid();
             Name = name;
-            if (!CheckEmail(email))
-                throw new InvalidEmailException("O e-mail informado é inválido!");
             Email = email;
             Phone = phone;
             RegisterDate = registerDate;
@@ -35,13 +33,6 @@ namespace LibraryManagement.Domain.Entities
 
 
         // Methods
-        private bool CheckEmail(string email)
-        {
-            var validateRegex = new Regex(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-
-            return validateRegex.IsMatch(email);
-        }
-
         public decimal CalcLoanTotal(int daysLate)
             => FineByDay * daysLate;
     }
