@@ -1,3 +1,6 @@
+using System.Text.RegularExpressions;
+using LibraryManagement.Domain.Exceptions;
+
 namespace LibraryManagement.Services
 {
     public static class Validator
@@ -20,16 +23,23 @@ namespace LibraryManagement.Services
         public static void ValidateUser((string userName, string userEmail, string userPhone, int userOpt) data)
         {
             if (string.IsNullOrWhiteSpace(data.userName))
-              throw new ArgumentNullException("O nome é obrigatório!");
+                throw new ArgumentNullException("O nome é obrigatório!");
 
             if (string.IsNullOrWhiteSpace(data.userEmail))
-              throw new ArgumentNullException("O e-mail é obrigatório!");
+                throw new ArgumentNullException("O e-mail é obrigatório!");
+            else if(!ValidateEmail(data.userEmail))
+                throw new InvalidEmailException("O e-mail informado é inválido!");
 
             if (string.IsNullOrWhiteSpace(data.userPhone))
-              throw new ArgumentNullException("O telefone é obrigatório!");
+                throw new ArgumentNullException("O telefone é obrigatório!");
 
             if (data.userOpt < 1 || data.userOpt > 3)
                 throw new ArgumentException("Opção inválida!");
+        }
+
+        public static bool ValidateEmail(string email)
+        {
+            return Regex.IsMatch(email, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
         }
     }
 }
