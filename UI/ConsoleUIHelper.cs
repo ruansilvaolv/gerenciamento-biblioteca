@@ -8,10 +8,15 @@ namespace LibraryManagement.UI
             return Console.ReadLine()!;
         }
 
-        public int ReadInt(int prompt)
+        public int ReadInt(string prompt)
         {
             Console.Write(prompt);
-            return int.Parse(Console.ReadLine()!);
+            if (int.TryParse(prompt, out int value))
+                return value;
+            else
+            {
+                throw new ArgumentException("Você deve digitar um valor numérico inteiro!");
+            }
         }
     }
 }
