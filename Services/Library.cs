@@ -33,42 +33,15 @@ namespace LibraryManagement.Services
 
               string isbn = _ui.ReadString("Digite o ISBN: ");
 
-              string yearInput = _ui.ReadString("Digite o ano de publicação: ");
-
-              if (int.TryParse(yearInput, out int publicationYear))
-              {
-                  if (publicationYear > DateTime.Now.Year)
-                  {
-                      throw new ArgumentException("Ano deve ser igual ou abaixo do ano atual!");
-                  }
-              }
-              else
-              {
-                  throw new ArgumentException("Ano inválido!");
-              }
+              int publicationYear = _ui.ReadInt("Digite o ano de publicação: ");
 
               return (bookName, author, isbn, publicationYear);
-          }
-
-          public void ValidateBookData((string bookName, string author, string isbn, int publicationYear) data)
-          {
-              if (string.IsNullOrWhiteSpace(data.bookName))
-                  throw new ArgumentNullException("O título do livro é obrigatório!");
-
-              if (string.IsNullOrWhiteSpace(data.author))
-                  throw new ArgumentNullException("O nome do autor é obrigatório!");
-
-              if (string.IsNullOrWhiteSpace(data.isbn))
-                  throw new ArgumentNullException("ISBN é obrigatório!");
-
-              if (int.IsNegative(data.publicationYear))
-                  throw new ArgumentException("O ano de publicação não pode ser negativo!");
           }
 
           public void RegisterBook()
           {
               var bookData = ReceiveBookData();
-              ValidateBookData(bookData);
+              Validator.ValidateBook(bookData);
               var (bookName, author, isbn, publicationYear) = bookData;
               var book = BookFactory.CreateBook(bookName, author, isbn, publicationYear);
 
@@ -86,42 +59,15 @@ namespace LibraryManagement.Services
 
               string userPhone = _ui.ReadString("Digite o telefone: ");
 
-              string opt = _ui.ReadString("Digite opção desejada:\n1 - Usuário Comum\n2 - Estudante\n3 - Professor\n");
-
-              if(int.TryParse(opt, out int userOpt))
-              {
-                  if (userOpt <= 0 || userOpt > 3)
-                  {
-                      throw new ArgumentException("Opção inválida!");
-                  }
-              }
-              else
-              {
-                  throw new ArgumentException("Opção inválida!");
-              }
+              int userOpt = _ui.ReadInt("Digite opção desejada:\n1 - Usuário Comum\n2 - Estudante\n3 - Professor\n");
 
               return (userName, userEmail, userPhone, userOpt);
-          }
-
-          public void ValidateUserData((string userName, string userEmail, string userPhone, int userOpt) data)
-          {
-              if (string.IsNullOrWhiteSpace(data.userName))
-                throw new ArgumentNullException("O nome é obrigatório!");
-
-              if (string.IsNullOrWhiteSpace(data.userEmail))
-                throw new ArgumentNullException("O e-mail é obrigatório!");
-
-              if (string.IsNullOrWhiteSpace(data.userPhone))
-                throw new ArgumentNullException("O telefone é obrigatório!");
-
-              if (data.userOpt < 1 || data.userOpt > 3)
-                throw new ArgumentException("Opção inválida!");
           }
 
           public void RegisterUser()
           {
               var userData = ReceiveUserData();
-              ValidateUserData(userData);
+              Validator.ValidateUser(userData);
               var (userName, userEmail, userPhone, userOpt) = userData;
               var user = UserFactory.CreateUser(userOpt, userName, userEmail, userPhone);
 
