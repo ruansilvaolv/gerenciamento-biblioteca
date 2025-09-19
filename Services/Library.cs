@@ -80,19 +80,25 @@ namespace LibraryManagement.Services
         #region Register Users Methods
           public (string userName, string userEmail, string userPhone, int userOpt) ReceiveUserData()
           {
-              Console.Write("Digite o nome completo: ");
-              string userName = Console.ReadLine() ?? "";
+              string userName = _ui.ReadString("Nome completo: ");
 
-              Console.Write("Digite o e-mail: ");
-              string userEmail = Console.ReadLine() ?? "";
+              string userEmail = _ui.ReadString("Digite o e-mail: ");
 
-              Console.Write("Digite o telefone: ");
-              string userPhone = Console.ReadLine() ?? "";
+              string userPhone = _ui.ReadString("Digite o telefone: ");
 
-              Console.Write("Digite opção desejada: ");
-              string opt = Console.ReadLine() ?? "";
+              string opt = _ui.ReadString("Digite opção desejada:\n1 - Usuário Comum\n2 - Estudante\n3 - Professor\n");
 
-              int.TryParse(opt, out int userOpt);
+              if(int.TryParse(opt, out int userOpt))
+              {
+                  if (userOpt <= 0 || userOpt > 3)
+                  {
+                      throw new ArgumentException("Opção inválida!");
+                  }
+              }
+              else
+              {
+                  throw new ArgumentException("Opção inválida!");
+              }
 
               return (userName, userEmail, userPhone, userOpt);
           }
