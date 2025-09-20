@@ -25,25 +25,10 @@ namespace LibraryManagement.Services
 
 
         #region Register Books Methods
-          public (string bookName, string author, string isbn, int publicationYear) ReceiveBookData()
+          public void RegisterBook((string bookName, string author, string isbn, int publicationYear) bookData)
           {
-              string bookName = _ui.ReadString("Título: ");
-
-              string author = _ui.ReadString("Nome do autor: ");
-
-              string isbn = _ui.ReadString("Digite o ISBN: ");
-
-              int publicationYear = _ui.ReadInt("Digite o ano de publicação: ");
-
-              return (bookName, author, isbn, publicationYear);
-          }
-
-          public void RegisterBook()
-          {
-              var bookData = ReceiveBookData();
               Validator.ValidateBook(bookData);
-              var (bookName, author, isbn, publicationYear) = bookData;
-              var book = BookFactory.CreateBook(bookName, author, isbn, publicationYear);
+              var book = BookFactory.CreateBook(bookData.bookName, bookData.author, bookData.isbn, bookData.publicationYear);
 
               Books.Add(book);
           }
