@@ -1,0 +1,63 @@
+using LibraryManagement.Services;
+
+namespace LibraryManagement.UI
+{
+    public class LibraryConsoleUI
+    {
+        private readonly Library _library;
+        private readonly IUIHelper _ui;
+
+        public LibraryConsoleUI(Library library, IUIHelper ui)
+        {
+            _library = library;
+            _ui = ui;
+        }
+
+        public void Run()
+        {
+            Console.WriteLine("Bem-vindo ao sistema de gerenciamento de Biblioteca!\n");
+
+            ShowMenu();
+            var menuOpt = _ui.ReadInt("Escolha: ");
+
+            do
+            {
+                if (menuOpt < 0 || menuOpt > 2)
+                    throw new ArgumentException("Opção desejada não existe!");
+
+                switch (menuOpt)
+                {
+                    case 0: break;
+                    case 1: RegisterBook(); break;
+                    case 2: RegisterUser(); break;
+                }
+            } while ( menuOpt != 0);
+        }
+
+        public void ShowMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Digite a opção desejada:\n1 - Cadastrar Livro\n2 - Cadastrar Usuário\n0 - Sair");
+        }
+
+        public void RegisterBook()
+        {
+            string bookName = _ui.ReadString("Nome do livro: ");
+            string author = _ui.ReadString("Nome do autor: ");
+            string isbn = _ui.ReadString("ISBN: ");
+            int publicationYear = _ui.ReadInt("Ano de publicação: ");
+
+            _library.RegisterBook((bookName, author, isbn, publicationYear));
+        }
+
+        public void RegisterUser()
+        {
+            string userName = _ui.ReadString("Nome completo: ");
+            string userEmail = _ui.ReadString("Digite o e-mail: ");
+            string userPhone = _ui.ReadString("Digite o telefone: ");
+            int userOpt = _ui.ReadInt("Digite opção desejada:\n1 - Usuário Comum\n2 - Estudante\n3 - Professor\n");
+
+            _library.RegisterUser((userName, userEmail, userPhone, userOpt));
+        }
+    }
+}
