@@ -35,26 +35,11 @@ namespace LibraryManagement.Services
         #endregion)
 
 
-        #region Register Users Methods
-          public (string userName, string userEmail, string userPhone, int userOpt) ReceiveUserData()
+        #region Registration Users Methods
+          public void RegisterUser((string userName, string userEmail, string userPhone, int userOpt) userData)
           {
-              string userName = _ui.ReadString("Nome completo: ");
-
-              string userEmail = _ui.ReadString("Digite o e-mail: ");
-
-              string userPhone = _ui.ReadString("Digite o telefone: ");
-
-              int userOpt = _ui.ReadInt("Digite opção desejada:\n1 - Usuário Comum\n2 - Estudante\n3 - Professor\n");
-
-              return (userName, userEmail, userPhone, userOpt);
-          }
-
-          public void RegisterUser()
-          {
-              var userData = ReceiveUserData();
               Validator.ValidateUser(userData);
-              var (userName, userEmail, userPhone, userOpt) = userData;
-              var user = UserFactory.CreateUser(userOpt, userName, userEmail, userPhone);
+              var user = UserFactory.CreateUser(userData.userOpt, userData.userName, userData.userEmail, userData.userPhone);
 
               Users.Add(user);
           }
