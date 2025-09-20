@@ -24,7 +24,7 @@ namespace LibraryManagement.Services
         #endregion
 
 
-        #region Register Books Methods
+        #region Registration Books Methods
           public void RegisterBook((string bookName, string author, string isbn, int publicationYear) bookData)
           {
               Validator.ValidateBook(bookData);
