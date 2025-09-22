@@ -1,6 +1,7 @@
-using LibraryManagement.Services;
+using LibraryManagement.Application.Services;
+using LibraryManagement.Application.Interfaces;
 
-namespace LibraryManagement.UI
+namespace LibraryManagement.Infraestructure.UI
 {
     public class LibraryConsoleUI
     {

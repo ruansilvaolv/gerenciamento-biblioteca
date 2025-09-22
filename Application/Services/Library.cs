@@ -2,7 +2,7 @@ using LibraryManagement.Domain.Entities;
 using LibraryManagement.Domain.Factories;
 using LibraryManagement.UI;
 
-namespace LibraryManagement.Services
+namespace LibraryManagement.Application.Services
 {
     public class Library
     {

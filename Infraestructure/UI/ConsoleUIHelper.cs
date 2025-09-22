@@ -1,4 +1,6 @@
-namespace LibraryManagement.UI
+using LibraryManagement.Application.Interfaces;
+
+namespace LibraryManagement.Infraestructure.UI
 {
     public class ConsoleUIHelper : IUIHelper
     {

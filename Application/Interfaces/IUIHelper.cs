@@ -1,4 +1,4 @@
-namespace LibraryManagement.UI
+namespace LibraryManagement.Application.Interfaces
 {
     public interface IUIHelper
     {
