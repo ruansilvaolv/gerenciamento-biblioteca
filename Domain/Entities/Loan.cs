@@ -14,11 +14,11 @@ namespace LibraryManagement.Domain.Entities
             UserType = userType;
         }
 
-        public Guid Id { get; set; }
-        public User User { get; set; }
-        public Book Book { get; set; }
-        public DateTime LoanDate { get; set; }
-        public DateTime DevolutionDate { get; set; }
+        public Guid Id { get; }
+        public User User { get; }
+        public Book Book { get; }
+        public DateTime LoanDate { get; }
+        public DateTime DevolutionDate { get; }
         public EUserType UserType { get; }
 
         public int CalcDaysLate()
