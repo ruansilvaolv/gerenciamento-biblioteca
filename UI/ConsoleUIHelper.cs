@@ -11,8 +11,9 @@ namespace LibraryManagement.UI
         public int ReadInt(string prompt)
         {
             Console.Write(prompt);
-            if (int.TryParse(prompt, out int value))
-                return value;
+            string value = Console.ReadLine()!;
+            if (int.TryParse(value, out int convertedValue))
+                return convertedValue;
             else
             {
                 throw new ArgumentException("Você deve digitar um valor numérico inteiro!");
