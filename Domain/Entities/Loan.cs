@@ -25,7 +25,16 @@ namespace LibraryManagement.Domain.Entities
           => LoanDate.Day - DevolutionDate.Day;
 
         public decimal CalcFine()
-          => User.FineByDay * CalcDaysLate();
+        {
+            int daysLate = CalcDaysLate();
+
+            if (daysLate > 0)
+                return User.FineByDay * CalcDaysLate();
+            else
+            {
+                return 0m;
+            }
+        }
 
         public void FinalizeLoan()
         {}
