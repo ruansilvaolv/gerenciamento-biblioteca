@@ -22,7 +22,7 @@ namespace LibraryManagement.Domain.Entities
         public EUserType UserType { get; }
 
         public int CalcDaysLate()
-          =>  DevolutionDate.Day - LoanDate.Day;
+          => LoanDate.Day - DevolutionDate.Day;
 
         public decimal CalcFine()
           => User.FineByDay * CalcDaysLate();
